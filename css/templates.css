@@ -1,0 +1,366 @@
+/* 卡片模板样式 */
+
+/* 模板预览缩略图 */
+.simple-preview {
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #f9f9f9 30%, #ffffff 30%);
+}
+
+.academic-preview {
+    background-color: #f5f5f5;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,20 L70,20 L70,80 L30,80 Z' fill='none' stroke='%23cccccc' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: 40px;
+}
+
+.artistic-preview {
+    background-color: #fff5f5;
+    background-image: linear-gradient(45deg, #ffebeb 25%, transparent 25%, transparent 75%, #ffebeb 75%, #ffebeb), 
+                      linear-gradient(45deg, #ffebeb 25%, transparent 25%, transparent 75%, #ffebeb 75%, #ffebeb);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.business-preview {
+    background-color: #f0f4f8;
+    background-image: linear-gradient(to right, #e6eef5 1px, transparent 1px);
+    background-size: 20px 100%;
+}
+
+.creative-preview {
+    background-color: #fffbf0;
+    background-image: radial-gradient(#ffe0b2 2px, transparent 2px);
+    background-size: 20px 20px;
+}
+
+/* 卡片模板样式 - 实际渲染 */
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 简约派模板 */
+.card.simple {
+    background-color: #ffffff;
+    padding: 40px;
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.card.simple .card-header {
+    margin-bottom: 30px;
+}
+
+.card.simple .card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.card.simple .card-intro {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.card.simple .card-points {
+    margin-bottom: 30px;
+}
+
+.card.simple .card-point {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.card.simple .card-point:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ff2442;
+    border-radius: 50%;
+}
+
+.card.simple .card-conclusion {
+    font-style: italic;
+    color: #555;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.card.simple .card-signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* 学术风模板 */
+.card.academic {
+    background-color: #f5f5f5;
+    padding: 40px;
+    font-family: 'Times New Roman', serif;
+}
+
+.card.academic .card-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+}
+
+.card.academic .card-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.card.academic .card-intro {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.card.academic .card-intro:before,
+.card.academic .card-intro:after {
+    content: '"';
+    font-size: 24px;
+    color: #888;
+}
+
+.card.academic .card-points {
+    margin-bottom: 30px;
+}
+
+.card.academic .card-point {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.card.academic .card-point:before {
+    content: '•';
+    position: absolute;
+    left: 5px;
+    top: 0;
+    font-size: 20px;
+    color: #555;
+}
+
+.card.academic .card-conclusion {
+    font-style: italic;
+    color: #333;
+    margin-top: auto;
+    padding: 15px;
+    background-color: #eee;
+    border-left: 4px solid #666;
+}
+
+.card.academic .card-signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* 文艺风模板 */
+.card.artistic {
+    background-color: #fff5f5;
+    padding: 40px;
+    font-family: 'Georgia', serif;
+}
+
+.card.artistic .card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card.artistic .card-title {
+    font-size: 28px;
+    font-weight: normal;
+    color: #d23f57;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    letter-spacing: 1px;
+}
+
+.card.artistic .card-intro {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.card.artistic .card-points {
+    margin-bottom: 30px;
+}
+
+.card.artistic .card-point {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+    color: #555;
+}
+
+.card.artistic .card-point:before {
+    content: '❧';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #d23f57;
+}
+
+.card.artistic .card-conclusion {
+    font-style: italic;
+    color: #666;
+    margin-top: auto;
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid #ffccd5;
+}
+
+.card.artistic .card-signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #d23f57;
+    font-style: italic;
+}
+
+/* 商务风模板 */
+.card.business {
+    background-color: #f0f4f8;
+    padding: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.card.business .card-header {
+    margin-bottom: 30px;
+    border-left: 4px solid #2c5282;
+    padding-left: 15px;
+}
+
+.card.business .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c5282;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.card.business .card-intro {
+    font-size: 15px;
+    color: #4a5568;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.card.business .card-points {
+    margin-bottom: 30px;
+}
+
+.card.business .card-point {
+    margin-bottom: 15px;
+    position: relative;
+    padding: 10px 15px;
+    background-color: #e6f0ff;
+    border-radius: 4px;
+}
+
+.card.business .card-conclusion {
+    color: #4a5568;
+    margin-top: auto;
+    padding: 15px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+}
+
+.card.business .card-signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #2c5282;
+    font-weight: bold;
+}
+
+/* 创意风模板 */
+.card.creative {
+    background-color: #fffbf0;
+    padding: 40px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.card.creative .card-header {
+    text-align: center;
+    margin-bottom: 30px;
+    transform: rotate(-2deg);
+}
+
+.card.creative .card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    text-shadow: 1px 1px 0 #fff, 2px 2px 0 #fbbf24;
+}
+
+.card.creative .card-intro {
+    font-size: 16px;
+    color: #78350f;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    transform: rotate(1deg);
+}
+
+.card.creative .card-points {
+    margin-bottom: 30px;
+}
+
+.card.creative .card-point {
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px 15px;
+    background-color: #fef3c7;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #fbbf24;
+    transform: rotate(0.5deg);
+}
+
+.card.creative .card-point:nth-child(even) {
+    transform: rotate(-0.5deg);
+}
+
+.card.creative .card-conclusion {
+    color: #78350f;
+    margin-top: auto;
+    padding: 15px;
+    background-color: #fef3c7;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #fbbf24;
+    transform: rotate(-1deg);
+}
+
+.card.creative .card-signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #f59e0b;
+    font-weight: bold;
+    transform: rotate(2deg);
+}
