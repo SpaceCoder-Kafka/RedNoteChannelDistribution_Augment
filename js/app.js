@@ -95,6 +95,14 @@ class CardGeneratorApp {
         this.elements.preview.fontSize.addEventListener('input', this.updateCustomOptions.bind(this));
         this.elements.preview.signature.addEventListener('input', this.updateCustomOptions.bind(this));
 
+        // 渲染模式选择事件
+        const renderModeSelect = document.getElementById('render-mode');
+        if (renderModeSelect) {
+            renderModeSelect.addEventListener('change', (e) => {
+                this.setCardRenderMode(e.target.value);
+            });
+        }
+
         // 导航按钮事件
         this.elements.preview.backToInputBtn.addEventListener('click', () => this.navigateTo('input'));
         this.elements.preview.goToExportBtn.addEventListener('click', () => this.navigateTo('export'));
@@ -102,8 +110,16 @@ class CardGeneratorApp {
         this.elements.export.createNewBtn.addEventListener('click', () => this.resetApp());
 
         // 导出按钮事件
-        this.elements.export.exportPng.addEventListener('click', () => this.exportCard('png'));
-        this.elements.export.exportJpg.addEventListener('click', () => this.exportCard('jpg'));
+        this.elements.export.exportPng.addEventListener('click', () => {
+            const exportModeSelect = document.getElementById('export-mode');
+            const exportAll = exportModeSelect ? exportModeSelect.value === 'all' : true;
+            this.exportCard('png', exportAll);
+        });
+        this.elements.export.exportJpg.addEventListener('click', () => {
+            const exportModeSelect = document.getElementById('export-mode');
+            const exportAll = exportModeSelect ? exportModeSelect.value === 'all' : true;
+            this.exportCard('jpg', exportAll);
+        });
     }
 
     /**
@@ -234,10 +250,21 @@ class CardGeneratorApp {
     }
 
     /**
+     * 设置卡片渲染模式
+     * @param {string} mode 渲染模式 ('single' 或 'multiple')
+     */
+    setCardRenderMode(mode) {
+        this.cardRenderer.setRenderMode(mode);
+        // 重新渲染卡片预览
+        this.renderCardPreview();
+    }
+
+    /**
      * 导出卡片
      * @param {string} format 导出格式 ('png' 或 'jpg')
+     * @param {boolean} exportAll 是否导出所有卡片
      */
-    async exportCard(format) {
+    async exportCard(format, exportAll = true) {
         // 显示进度条
         this.showProgress(`正在导出${format.toUpperCase()}图像...`, 0);
 
@@ -251,18 +278,32 @@ class CardGeneratorApp {
             // 更新进度
             this.updateProgress('渲染图像...', 40);
 
-            // 渲染为图像
-            const cardElement = this.elements.export.exportCardPreview.querySelector('.card');
-            const dataUrl = await this.cardRenderer.renderToImage(cardElement, format, resolution);
+            if (exportAll && this.cardRenderer.renderMode === 'multiple') {
+                // 导出所有卡片
+                const dataUrls = await this.cardRenderer.renderAllToImages(format, resolution);
 
-            // 更新进度
-            this.updateProgress('保存图像...', 80);
+                // 更新进度
+                this.updateProgress(`保存${dataUrls.length}张图像...`, 80);
 
-            // 导出图像
-            await ExportUtils.exportImage(dataUrl, format);
+                // 导出多张图像
+                await ExportUtils.exportMultipleImages(dataUrls, format);
 
-            // 更新进度
-            this.updateProgress('导出完成', 100);
+                // 更新进度
+                this.updateProgress(`导出完成，共${dataUrls.length}张图像`, 100);
+            } else {
+                // 导出单张卡片
+                const cardElement = this.elements.export.exportCardPreview.querySelector('.card');
+                const dataUrl = await this.cardRenderer.renderToImage(cardElement, format, resolution);
+
+                // 更新进度
+                this.updateProgress('保存图像...', 80);
+
+                // 导出图像
+                await ExportUtils.exportImage(dataUrl, format);
+
+                // 更新进度
+                this.updateProgress('导出完成', 100);
+            }
 
             // 隐藏进度条
             setTimeout(() => {
