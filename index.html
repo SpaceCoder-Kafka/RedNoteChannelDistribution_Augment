@@ -81,6 +81,13 @@
                         <h3>自定义选项</h3>
                         <div class="customization-options">
                             <div class="option">
+                                <label for="render-mode">渲染模式</label>
+                                <select id="render-mode">
+                                    <option value="multiple">多卡片模式（每个要点一张）</option>
+                                    <option value="single">单卡片模式（全部内容一张）</option>
+                                </select>
+                            </div>
+                            <div class="option">
                                 <label for="bg-color">背景颜色</label>
                                 <input type="color" id="bg-color" value="#ffffff">
                             </div>
@@ -132,6 +139,13 @@
                         <div class="format-options">
                             <button id="export-png" class="format-btn">PNG格式</button>
                             <button id="export-jpg" class="format-btn">JPG格式</button>
+                        </div>
+                        <div class="export-mode-option">
+                            <label for="export-mode">导出模式</label>
+                            <select id="export-mode">
+                                <option value="all">导出所有卡片</option>
+                                <option value="current">仅导出当前卡片</option>
+                            </select>
                         </div>
                         <div class="resolution-option">
                             <label for="resolution">分辨率</label>
